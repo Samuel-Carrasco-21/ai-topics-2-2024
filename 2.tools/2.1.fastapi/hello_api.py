@@ -18,6 +18,6 @@ def crear_estudiante(nombre: str, apellido: str, curso: str):
     )
     return estudiantes
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("hello_api:app", reload=True, port=8008)
+# if __name__ == "__main__":
+#     import uvicorn
+#     uvicorn.run("hello_api:app", reload=True, port=8008)
