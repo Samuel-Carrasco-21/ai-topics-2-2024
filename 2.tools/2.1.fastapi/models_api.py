@@ -2,31 +2,39 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from enum import Enum
 from datetime import datetime
-import math
+import random
 
-class RaceEnum(Enum):
-  orc = "ORC"
-  elf = "ELF"
-  human = "HUMAN"
-  globin = "GOBLIN"
+
+class RaceEnum(str, Enum):
+    orc = "ORC"
+    elf = "ELF"
+    human = "HUMAN"
+    goblin = "GOBLIN"
 
 class Guild(BaseModel):
-  id:int | None = None
-  name: str
-  realm: str
-  created: datetime
-  used: bool
+    id: int
+    name: str
+    realm: str
+    created: datetime
 
 class Character(BaseModel):
-  id:int | None = None
-  name: str
-  level: int
-  race: RaceEnum
-  hp: int
-  damage: int
-  guild_id: int
+    id: int
+    name: str
+    level: int
+    race: RaceEnum
+    hp: int
+    damage: int | None = None # opcional
+    guild: Guild
 
-app = FastAPI(title="validation")
+class CharacterCreate(BaseModel):
+    name: str
+    level: int
+    race: RaceEnum
+    hp: int
+    damage: int
+    guild_id: int
+
+app = FastAPI(title="validacion")
 
 guilds = []
 characters = []
